@@ -1,0 +1,57 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+#include <iostream>
+#include <cstdlib>
+#include <string>
+using namespace std;
+
+int enemyhp = 40;
+int mp = 100;
+int playerhp = 120;
+int damage = 0;
+int turns = 0;
+int intel = 20;
+string response;
+int main() {
+   while (enemyhp > 0 and playerhp > 0) {
+      
+      cout << "Your turn, what do you do?" << endl;
+      cin >> response;
+         if (response == "attack") {
+            damage = rand() % 10 + 1;
+            enemyhp = enemyhp - damage;
+            cout << "You deal " << damage << " damage to the Cobald, it has " << enemyhp << "hp left." << endl;
+            cout << "Cobald's turn, it attacks" << endl;
+         }
+         else if (response == "spell" and mp > 50 or mp == 50) {
+            damage = rand() % intel + 1;
+            mp = mp - 50;
+            enemyhp = enemyhp - damage;
+            cout << "You deal " << damage << " damage to the Cobald, it has " << enemyhp << "hp left." << endl;
+            cout << "Cobald's turn, it attacks" << endl;
+         }
+         else cout << "Invalid Command, the Cobald takes the advantage." << endl;
+      damage = 5;
+      playerhp = playerhp - damage;
+      cout << "The Cobald deals " << damage << " damage, " << playerhp << " is your hp left" << endl;
+      turns++;
+   }
+   cout << "the battle has been decided in " << turns << " turns." << endl;
+   if(enemyhp < 0 or enemyhp == 0)
+    cout << "YOU WIN!";
+   else
+    cout << "ERROR:IMPOSSIBLE!";
+   return 0;
+}
